@@ -1,0 +1,17 @@
+USE MAD1
+
+CREATE PROCEDURE spAgregarRolEmp
+    @Rol VARCHAR(30),
+    @Descripcion VARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO RolEmp (Rol, Descripcion) VALUES (@Rol, @Descripcion);
+END
+
+EXEC spAgregarRolEmp 'Empleado', 'Se encarga de ayudar al cliente';
+
+Select*from RolEmp
+
+Delete RolEmp Where IdRol  > '1' 
