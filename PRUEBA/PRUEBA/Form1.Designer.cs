@@ -31,7 +31,6 @@ namespace PRUEBA
         {
             this.TxtCorreo = new System.Windows.Forms.TextBox();
             this.TxtCont = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,17 +49,6 @@ namespace PRUEBA
             this.TxtCont.Name = "TxtCont";
             this.TxtCont.Size = new System.Drawing.Size(165, 22);
             this.TxtCont.TabIndex = 1;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(61, 165);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(143, 21);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "ADMINISTRADOR";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -98,7 +86,6 @@ namespace PRUEBA
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.TxtCont);
             this.Controls.Add(this.TxtCorreo);
             this.Name = "Form1";
@@ -112,7 +99,6 @@ namespace PRUEBA
 
         private System.Windows.Forms.TextBox TxtCorreo;
         private System.Windows.Forms.TextBox TxtCont;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;

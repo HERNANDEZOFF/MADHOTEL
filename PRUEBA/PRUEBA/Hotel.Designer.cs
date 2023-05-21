@@ -29,19 +29,17 @@ namespace PRUEBA
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
+            this.txtCalle = new System.Windows.Forms.TextBox();
+            this.txtHabitaciones = new System.Windows.Forms.TextBox();
+            this.txtCod = new System.Windows.Forms.TextBox();
+            this.txtPisos = new System.Windows.Forms.TextBox();
+            this.txtEstado = new System.Windows.Forms.TextBox();
+            this.txtPais = new System.Windows.Forms.TextBox();
+            this.txtCiudad = new System.Windows.Forms.TextBox();
+            this.txtNumero = new System.Windows.Forms.TextBox();
+            this.txtZona = new System.Windows.Forms.TextBox();
+            this.txtServicios = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,111 +52,97 @@ namespace PRUEBA
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.txtAmenidades = new System.Windows.Forms.TextBox();
+            this.tdOp = new System.Windows.Forms.DateTimePicker();
+            this.dtAlta = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.txtid2 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtNom
             // 
-            this.textBox1.Location = new System.Drawing.Point(43, 79);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(171, 22);
-            this.textBox1.TabIndex = 0;
+            this.txtNom.Location = new System.Drawing.Point(43, 79);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.Size = new System.Drawing.Size(171, 22);
+            this.txtNom.TabIndex = 0;
             // 
-            // textBox2
+            // txtCalle
             // 
-            this.textBox2.Location = new System.Drawing.Point(43, 135);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(171, 22);
-            this.textBox2.TabIndex = 1;
+            this.txtCalle.Location = new System.Drawing.Point(43, 135);
+            this.txtCalle.Name = "txtCalle";
+            this.txtCalle.Size = new System.Drawing.Size(171, 22);
+            this.txtCalle.TabIndex = 1;
             // 
-            // textBox3
+            // txtHabitaciones
             // 
-            this.textBox3.Location = new System.Drawing.Point(43, 187);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(171, 22);
-            this.textBox3.TabIndex = 2;
+            this.txtHabitaciones.Location = new System.Drawing.Point(43, 187);
+            this.txtHabitaciones.Name = "txtHabitaciones";
+            this.txtHabitaciones.Size = new System.Drawing.Size(171, 22);
+            this.txtHabitaciones.TabIndex = 2;
             // 
-            // textBox4
+            // txtCod
             // 
-            this.textBox4.Location = new System.Drawing.Point(424, 135);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(158, 22);
-            this.textBox4.TabIndex = 3;
+            this.txtCod.Location = new System.Drawing.Point(424, 135);
+            this.txtCod.Name = "txtCod";
+            this.txtCod.Size = new System.Drawing.Size(158, 22);
+            this.txtCod.TabIndex = 3;
             // 
-            // textBox5
+            // txtPisos
             // 
-            this.textBox5.Location = new System.Drawing.Point(610, 135);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(150, 22);
-            this.textBox5.TabIndex = 4;
+            this.txtPisos.Location = new System.Drawing.Point(610, 135);
+            this.txtPisos.Name = "txtPisos";
+            this.txtPisos.Size = new System.Drawing.Size(150, 22);
+            this.txtPisos.TabIndex = 4;
             // 
-            // textBox6
+            // txtEstado
             // 
-            this.textBox6.Location = new System.Drawing.Point(424, 79);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(158, 22);
-            this.textBox6.TabIndex = 5;
+            this.txtEstado.Location = new System.Drawing.Point(424, 79);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(158, 22);
+            this.txtEstado.TabIndex = 5;
             // 
-            // textBox7
+            // txtPais
             // 
-            this.textBox7.Location = new System.Drawing.Point(610, 79);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(150, 22);
-            this.textBox7.TabIndex = 6;
+            this.txtPais.Location = new System.Drawing.Point(610, 79);
+            this.txtPais.Name = "txtPais";
+            this.txtPais.Size = new System.Drawing.Size(150, 22);
+            this.txtPais.TabIndex = 6;
             // 
-            // textBox8
+            // txtCiudad
             // 
-            this.textBox8.Location = new System.Drawing.Point(238, 79);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(158, 22);
-            this.textBox8.TabIndex = 7;
+            this.txtCiudad.Location = new System.Drawing.Point(238, 79);
+            this.txtCiudad.Name = "txtCiudad";
+            this.txtCiudad.Size = new System.Drawing.Size(158, 22);
+            this.txtCiudad.TabIndex = 7;
             // 
-            // textBox9
+            // txtNumero
             // 
-            this.textBox9.Location = new System.Drawing.Point(238, 135);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(158, 22);
-            this.textBox9.TabIndex = 8;
+            this.txtNumero.Location = new System.Drawing.Point(238, 135);
+            this.txtNumero.Name = "txtNumero";
+            this.txtNumero.Size = new System.Drawing.Size(158, 22);
+            this.txtNumero.TabIndex = 8;
             // 
-            // textBox10
+            // txtZona
             // 
-            this.textBox10.Location = new System.Drawing.Point(238, 187);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(158, 22);
-            this.textBox10.TabIndex = 9;
+            this.txtZona.Location = new System.Drawing.Point(238, 187);
+            this.txtZona.Name = "txtZona";
+            this.txtZona.Size = new System.Drawing.Size(158, 22);
+            this.txtZona.TabIndex = 9;
             // 
-            // listBox1
+            // txtServicios
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(424, 215);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(158, 100);
-            this.listBox1.TabIndex = 10;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(610, 215);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(150, 100);
-            this.listView1.TabIndex = 11;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(424, 187);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(158, 22);
-            this.textBox11.TabIndex = 12;
+            this.txtServicios.Location = new System.Drawing.Point(424, 187);
+            this.txtServicios.Name = "txtServicios";
+            this.txtServicios.Size = new System.Drawing.Size(158, 22);
+            this.txtServicios.TabIndex = 12;
             // 
             // label1
             // 
@@ -268,28 +252,28 @@ namespace PRUEBA
             this.label12.TabIndex = 24;
             this.label12.Text = "Amenidades:";
             // 
-            // textBox12
+            // txtAmenidades
             // 
-            this.textBox12.Location = new System.Drawing.Point(610, 187);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(150, 22);
-            this.textBox12.TabIndex = 25;
+            this.txtAmenidades.Location = new System.Drawing.Point(610, 187);
+            this.txtAmenidades.Name = "txtAmenidades";
+            this.txtAmenidades.Size = new System.Drawing.Size(150, 22);
+            this.txtAmenidades.TabIndex = 25;
             // 
-            // dateTimePicker1
+            // tdOp
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(43, 238);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(171, 22);
-            this.dateTimePicker1.TabIndex = 26;
+            this.tdOp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.tdOp.Location = new System.Drawing.Point(43, 238);
+            this.tdOp.Name = "tdOp";
+            this.tdOp.Size = new System.Drawing.Size(171, 22);
+            this.tdOp.TabIndex = 26;
             // 
-            // dateTimePicker2
+            // dtAlta
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(43, 293);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(171, 22);
-            this.dateTimePicker2.TabIndex = 27;
+            this.dtAlta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtAlta.Location = new System.Drawing.Point(43, 293);
+            this.dtAlta.Name = "dtAlta";
+            this.dtAlta.Size = new System.Drawing.Size(171, 22);
+            this.dtAlta.TabIndex = 27;
             // 
             // label13
             // 
@@ -318,6 +302,7 @@ namespace PRUEBA
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(717, 206);
             this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // button1
             // 
@@ -327,6 +312,7 @@ namespace PRUEBA
             this.button1.TabIndex = 31;
             this.button1.Text = "Crear";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -336,20 +322,58 @@ namespace PRUEBA
             this.button2.TabIndex = 32;
             this.button2.Text = "Editar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(607, 236);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 17);
+            this.label15.TabIndex = 33;
+            this.label15.Text = "label15";
+            // 
+            // txtid
+            // 
+            this.txtid.Location = new System.Drawing.Point(610, 268);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(66, 22);
+            this.txtid.TabIndex = 34;
+            // 
+            // txtid2
+            // 
+            this.txtid2.Location = new System.Drawing.Point(610, 309);
+            this.txtid2.Name = "txtid2";
+            this.txtid2.Size = new System.Drawing.Size(66, 22);
+            this.txtid2.TabIndex = 35;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(351, 228);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(93, 32);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "Eliminar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Hotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(807, 611);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.txtid2);
+            this.Controls.Add(this.txtid);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.dtAlta);
+            this.Controls.Add(this.tdOp);
+            this.Controls.Add(this.txtAmenidades);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -362,19 +386,17 @@ namespace PRUEBA
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtServicios);
+            this.Controls.Add(this.txtZona);
+            this.Controls.Add(this.txtNumero);
+            this.Controls.Add(this.txtCiudad);
+            this.Controls.Add(this.txtPais);
+            this.Controls.Add(this.txtEstado);
+            this.Controls.Add(this.txtPisos);
+            this.Controls.Add(this.txtCod);
+            this.Controls.Add(this.txtHabitaciones);
+            this.Controls.Add(this.txtCalle);
+            this.Controls.Add(this.txtNom);
             this.Name = "Hotel";
             this.Text = "Hotel";
             this.Load += new System.EventHandler(this.Hotel_Load);
@@ -386,19 +408,17 @@ namespace PRUEBA
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtNom;
+        private System.Windows.Forms.TextBox txtCalle;
+        private System.Windows.Forms.TextBox txtHabitaciones;
+        private System.Windows.Forms.TextBox txtCod;
+        private System.Windows.Forms.TextBox txtPisos;
+        private System.Windows.Forms.TextBox txtEstado;
+        private System.Windows.Forms.TextBox txtPais;
+        private System.Windows.Forms.TextBox txtCiudad;
+        private System.Windows.Forms.TextBox txtNumero;
+        private System.Windows.Forms.TextBox txtZona;
+        private System.Windows.Forms.TextBox txtServicios;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -411,13 +431,17 @@ namespace PRUEBA
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox txtAmenidades;
+        private System.Windows.Forms.DateTimePicker tdOp;
+        private System.Windows.Forms.DateTimePicker dtAlta;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtid;
+        private System.Windows.Forms.TextBox txtid2;
+        private System.Windows.Forms.Button button3;
     }
 }

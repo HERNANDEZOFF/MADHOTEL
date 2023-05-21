@@ -13,15 +13,25 @@ namespace PRUEBA
 {
     public partial class Form1 : Form
     {
-
-        private static int currentUserId; // email or ID
-        private static int currentUserIdRol;
         private static string currentUserName;
+        private static string currentUserId;
+
+        public string getCurrentUserName()
+        {
+            return currentUserName;
+        }
+
+        public string getCurrentUserId()
+        {
+            return currentUserId;
+        }
 
         public Form1()
         {
             InitializeComponent();
         }
+        
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -38,7 +48,7 @@ namespace PRUEBA
             {
                 var obj = new EnlaceDB();
                 var tablas = new DataTable();
-                tablas = obj.getDataEmp("", "");
+                tablas = obj.getDataEmp(1,TxtCorreo.Text,"","","","",DateTime.Now,"","","","","","",0,TxtCont.Text,"",DateTime.Now,"",DateTime.Now,"L");
 
                 if (tablas.Rows.Count == 0)
                 {
@@ -48,16 +58,25 @@ namespace PRUEBA
                 {
                     if (tablas.Rows[0][1].ToString() == "1")
                     {
-                        var menu = new Usuarios();
+                        string nombre = tablas.Rows[0][0].ToString();
+                        currentUserName = nombre;
+
+                        string ide = tablas.Rows[0][3].ToString();
+                        currentUserId = ide;
+
+                        var menu = new MenuAdmin();
                         menu.ShowDialog();
 
                     }
                     else
                     {
                         string nombre = tablas.Rows[0][0].ToString();
-                        string ide = tablas.Rows[0][2].ToString();
+                        currentUserName = nombre;
 
-                        var menue = new Clientes(nombre, ide);
+                        string ide = tablas.Rows[0][3].ToString();
+                        currentUserId = ide;
+
+                        var menue = new Clientes();
                         menue.ShowDialog();
                     }
                 }
