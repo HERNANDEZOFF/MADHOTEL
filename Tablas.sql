@@ -1,5 +1,5 @@
-CREATE DATABASE MAD1;
-USE MAD1;
+CREATE DATABASE MAD6
+USE MAD6
 
 CREATE TABLE RolEmp(
 IdRol INT IDENTITY(1,1) NOT NULL,
@@ -35,44 +35,81 @@ CONSTRAINT PK_Empleado PRIMARY KEY(IdEmpleado),
 CONSTRAINT FK_RolEmpleado FOREIGN KEY(IdRolEmp) REFERENCES RolEmp(IdRol)
 );
 
-CREATE TABLE TipoHabitacion(
-IdHabitacion INT IDENTITY(1,1) NOT NULL,
-TipoHabitacion VARCHAR(30) NOT NULL,
-CantCamas VARCHAR(30) NOT NULL,
-TipoCama VARCHAR(30) NOT NULL,
-Precio MONEY NOT NULL,
-CantPersonas VARCHAR (30) NOT NULL,
-CantTipoHab VARCHAR(30) NOT NULL,
-Caracteristicas VARCHAR(30) NOT NULL,
-Amenidades VARCHAR(200) NOT NULL,
-Disponibilidad BIT,
-FecAlta DATETIME NOT NULL,
-IdEmpleadoHo INT NOT NULL,
-CONSTRAINT PK_TipoHab PRIMARY KEY(IdHabitacion),
-CONSTRAINT FK_RegEmpleado FOREIGN KEY(IdEmpleadoHo) REFERENCES Empleado(IdEmpleado)
+CREATE TABLE ContrasenasAnteriores(
+    IdContrasenaAnt INT IDENTITY(1,1) NOT NULL,
+    ContrasenaAnterior VARCHAR(50) NOT NULL,
+    FechaHoraCambio DATETIME NOT NULL DEFAULT GETDATE(),
+    IdEmpleado INT NOT NULL,
+    CONSTRAINT PK_ContAnteriores PRIMARY KEY(IdContrasenaAnt),
+    CONSTRAINT FK_ContraAnterioresEmp FOREIGN KEY(IdEmpleado) REFERENCES Empleado(IdEmpleado)
 );
 
-CREATE TABLE Hotel(
-IdHotel INT IDENTITY(1,1) NOT NULL,
-Nombre VARCHAR(30) NOT NULL,
-Ciudad VARCHAR(100) NOT NULL,
-Estado VARCHAR(100) NOT NULL,
-Pais VARCHAR(100) NOT NULL,
-Calle VARCHAR(100) NOT NULL,
-Numero VARCHAR(100) NOT NULL,
-CodigoPostal VARCHAR(100) NOT NULL,
-CantPisos VARCHAR(100) NOT NULL,
-CantHabitaciones VARCHAR(100) NOT NULL,
-ZonaTuristica VARCHAR(100) NOT NULL,
-Servicios VARCHAR(100) NOT NULL,
-Amenidades VARCHAR(100) NOT NULL,
-FecOperaciones DATE NOT NULL,
-FecAlta DATE NOT NULL,
-CreadoPor INT NOT NULL,
-IdHabitacion INT NOT NULL,
-CONSTRAINT PK_Hotel PRIMARY KEY(IdHotel),
-CONSTRAINT FK_Creado FOREIGN KEY(CreadoPor) REFERENCES Empleado(IdEmpleado),
-CONSTRAINT FK_TipoHabita FOREIGN KEY(IdHabitacion) REFERENCES TipoHabitacion(IdHabitacion)
+CREATE TABLE Hotel (
+    IdHotel INT IDENTITY(1,1) NOT NULL,
+    Nombre VARCHAR(30) NOT NULL,
+    Ciudad VARCHAR(100) NOT NULL,
+    Estado VARCHAR(100) NOT NULL,
+    Pais VARCHAR(100) NOT NULL,
+    Calle VARCHAR(100) NOT NULL,
+    Numero VARCHAR(100) NOT NULL,
+    CodigoPostal VARCHAR(100) NOT NULL,
+    CantPisos VARCHAR(100) NOT NULL,
+    CantHabitaciones VARCHAR(100) NOT NULL,
+    ZonaTuristica VARCHAR(100) NOT NULL,
+    Servicios VARCHAR(100) NOT NULL,
+    Amenidades VARCHAR(100) NOT NULL,
+    FecOperaciones DATETIME NOT NULL,
+    FecAlta DATETIME NOT NULL,
+    CreadoPor INT NOT NULL,
+    CONSTRAINT PK_Hotel PRIMARY KEY (IdHotel),
+    CONSTRAINT FK_Creado FOREIGN KEY (CreadoPor) REFERENCES Empleado (IdEmpleado)
+);
+
+CREATE TABLE TipoHabitacion (
+    IdHabitacion INT IDENTITY(1,1) NOT NULL,
+    TipoHabitacion VARCHAR(30) NOT NULL,
+    CantCamas VARCHAR(30) NOT NULL,
+    TipoCama VARCHAR(30) NOT NULL,
+    Precio MONEY NOT NULL,
+    CantPersonas VARCHAR(30) NOT NULL,
+    CantTipoHab VARCHAR(30) NOT NULL,
+    Caracteristicas VARCHAR(30) NOT NULL,
+    Amenidades VARCHAR(200) NOT NULL,
+    FecAlta DATETIME NOT NULL,
+    IdEmpleadoHo INT NOT NULL,
+    IdHotel INT NOT NULL,
+    CONSTRAINT PK_TipoHab PRIMARY KEY (IdHabitacion),
+    CONSTRAINT FK_RegEmpleado FOREIGN KEY (IdEmpleadoHo) REFERENCES Empleado (IdEmpleado),
+    CONSTRAINT FK_IdHotel FOREIGN KEY (IdHotel) REFERENCES Hotel (IdHotel)
+);
+
+ALTER TABLE TipoHabitacion
+ADD NombreHotel VARCHAR(100);
+
+ALTER TABLE TipoHabitacion
+ADD CantHabitaciones INT;
+
+
+
+CREATE TABLE Habitacion (
+    IdHabitacion INT IDENTITY(1,1) NOT NULL,
+    NumHabitacion INT NOT NULL,
+    Descripcion VARCHAR(100) NOT NULL,
+    IdTipoHabitacion INT NOT NULL,
+    IdHotel INT NOT NULL,
+    CONSTRAINT PK_Habitacion PRIMARY KEY (IdHabitacion),
+    CONSTRAINT FK_TipoHabitacion FOREIGN KEY (IdTipoHabitacion) REFERENCES TipoHabitacion (IdHabitacion),
+    CONSTRAINT FK_Hotel FOREIGN KEY (IdHotel) REFERENCES Hotel (IdHotel)
+);
+
+CREATE TABLE HabitacionesDisponibles (
+    IdHabitacionDisponible INT IDENTITY(1,1) NOT NULL,
+    IdHotel INT NOT NULL,
+    IdTipoHabitacion INT NOT NULL,
+    CantidadDisponible INT NOT NULL,
+    CONSTRAINT PK_HabitacionesDisponibles PRIMARY KEY (IdHabitacionDisponible),
+    CONSTRAINT FK_HabitacionesDisponibles_Hotel FOREIGN KEY (IdHotel) REFERENCES Hotel (IdHotel),
+    CONSTRAINT FK_HabitacionesDisponibles_TipoHabitacion FOREIGN KEY (IdTipoHabitacion) REFERENCES TipoHabitacion (IdHabitacion)
 );
 
 CREATE TABLE Cliente(
@@ -90,6 +127,11 @@ FechaAlta DATETIME NOT NULL,
 CONSTRAINT PK_Cliente PRIMARY KEY(Correo),
 CONSTRAINT FK_CreadoPor FOREIGN KEY (CreadoPor) REFERENCES Empleado (IdEmpleado)
 );
+
+ALTER TABLE Cliente
+ADD FechaModificacion DATETIME NULL,
+    UsuarioModificacion VARCHAR(30) NULL;
+
 
 CREATE TABLE Reservacion (
     IdReservacion UNIQUEIDENTIFIER NOT NULL,

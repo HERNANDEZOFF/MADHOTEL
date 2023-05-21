@@ -1,4 +1,4 @@
-USE MAD1
+USE MAD6
 
 CREATE PROCEDURE SPEmpleado
     @IdEmpleado INT = NULL,
@@ -20,7 +20,6 @@ CREATE PROCEDURE SPEmpleado
     @FechaHoraAlta DATETIME = NULL, -- nueva variable de entrada
     @UsuarioModif VARCHAR(30) = NULL,
     @FechaHoraModif DATETIME = NULL,
-    @Activo BIT = NULL,
 	@Accion CHAR(1)
 AS
 BEGIN
@@ -38,23 +37,29 @@ BEGIN
     END
     ELSE IF @Accion = 'M' -- Modificación
     BEGIN
+		DECLARE @ContraAnterior VARCHAR(50)
+        SELECT @ContraAnterior = Contra1 FROM Empleado WHERE IdEmpleado = @IdEmpleado
+
         UPDATE Empleado
-        SET Correo = COALESCE(@Correo, Correo),
-            Nombre = COALESCE(@Nombre, Nombre),
-            ApPaterno = COALESCE(@ApPaterno, ApPaterno),
-            ApMaterno = COALESCE(@ApMaterno, ApMaterno),
-            NumNomina = COALESCE(@NumNomina, NumNomina),
-            FechaNacimiento = COALESCE(@FechaNacimiento, FechaNacimiento),
-            Calle = COALESCE(@Calle, Calle),
-            Numero = COALESCE(@Numero, Numero),
-            Colonia = COALESCE(@Colonia, Colonia),
-            CodigoPostal = COALESCE(@CodigoPostal, CodigoPostal),
-            Telefono = COALESCE(@Telefono, Telefono),
-            Celular = COALESCE(@Celular, Celular),
-            IdRolEmp = COALESCE(@IdRolEmp, IdRolEmp),
-            Contra1 = COALESCE(@Contra1, Contra1)
+        SET Correo = @Correo,
+            Nombre = @Nombre,
+            ApPaterno = @ApPaterno,
+            ApMaterno = @ApMaterno, 
+            NumNomina = @NumNomina,
+            FechaNacimiento = @FechaNacimiento,
+            Calle = @Calle, 
+            Numero =@Numero,
+            Colonia = @Colonia,
+            CodigoPostal = @CodigoPostal,
+            Telefono = @Telefono, 
+            Celular =@Celular, 
+            IdRolEmp = @IdRolEmp, 
+            Contra1 = @Contra1,
+            Contra2 = @ContraAnterior,
+            Contra3 = (SELECT TOP 1 Contra2 FROM ContrasenasAnteriores WHERE IdEmpleado = @IdEmpleado)
         WHERE IdEmpleado = @IdEmpleado
     END
+
     ELSE IF @Accion = 'E' -- Eliminación
     BEGIN
         DELETE FROM Empleado WHERE IdEmpleado = @IdEmpleado
@@ -65,6 +70,23 @@ BEGIN
         SET Activo = 0
         WHERE IdEmpleado = @IdEmpleado
     END
+	 ELSE IF @Accion = 'R' -- Alta lógica
+    BEGIN
+        UPDATE Empleado
+        SET Activo = 1
+        WHERE IdEmpleado = @IdEmpleado
+    END
+	ELSE IF @Accion='L'
+	BEGIN
+	SELECT Nombre, IdRolEmp,Correo,IdEmpleado
+	FROM Empleado WHERE Correo=@Correo AND Contra1 =@Contra1;
+	END
+	ELSE IF @Accion='S'
+	BEGIN
+	SELECT IdEmpleado, Correo, Nombre, ApPaterno, ApMaterno, NumNomina, FechaNacimiento, Calle, Numero, 
+	Colonia, CodigoPostal, Telefono, Celular, FecAlta, IdRolEmp, Contra1, UsuarioAlta, FechaHoraAlta, Activo
+	FROM Empleado
+	END;
 END
 
 EXEC SPEmpleado 
@@ -84,5 +106,7 @@ EXEC SPEmpleado
     @IdRolEmp = 1,
     @Contra1 = '123',
     @UsuarioAlta = 'admin'
+
+	Update Empleado Set IdRolEmp=1 where IdEmpleado=1 
 
 	select*from Empleado

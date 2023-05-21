@@ -1,4 +1,4 @@
-USE MAD1
+USE MAD6
 
 CREATE PROCEDURE spAgregarRolEmp
     @Rol VARCHAR(30),
@@ -10,7 +10,9 @@ BEGIN
     INSERT INTO RolEmp (Rol, Descripcion) VALUES (@Rol, @Descripcion);
 END
 
-EXEC spAgregarRolEmp 'Empleado', 'Se encarga de ayudar al cliente';
+EXEC spAgregarRolEmp 'Admin', 'Se encarga de todo';
+
+EXEC spAgregarRolEmp 'Empleado', 'Se encarga de ayudar';
 
 Select*from RolEmp
 
