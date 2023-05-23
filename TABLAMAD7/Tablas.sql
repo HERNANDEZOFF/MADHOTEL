@@ -80,7 +80,6 @@ CREATE TABLE HotelServicioExtra (
     CONSTRAINT FK_HotelServicioExtra_ServicioExtra FOREIGN KEY (IdServicio) REFERENCES ServicioExtra (IdServicio)
 );
 
-
 CREATE TABLE TipoHabitacion (
     IdHabitacion INT IDENTITY(1,1) NOT NULL,
     TipoHabitacion VARCHAR(30) NOT NULL,
@@ -112,32 +111,41 @@ CREATE TABLE Habitacion (
 );
 
 CREATE TABLE HabitacionesDisponibles (
-	IdHabitacionDisponible INT IDENTITY(1,1) NOT NULL,
-	IdHotel INT NOT NULL,
-	IdTipoHabitacion INT NOT NULL,
-	CantidadDisponible INT NOT NULL,
-	Ocupada BIT NOT NULL DEFAULT 0,
-	CONSTRAINT PK_HabitacionesDisponibles PRIMARY KEY (IdHabitacionDisponible),
-	CONSTRAINT FK_HabitacionesDisponibles_Hotel FOREIGN KEY (IdHotel) REFERENCES Hotel (IdHotel),
-	CONSTRAINT FK_HabitacionesDisponibles_TipoHabitacion FOREIGN KEY (IdTipoHabitacion) REFERENCES TipoHabitacion (IdHabitacion)
+    IdHabitacionDisponible INT IDENTITY(1,1) NOT NULL,
+    IdHotel INT NOT NULL,
+    IdTipoHabitacion INT NOT NULL,
+    CantidadDisponible INT NOT NULL,
+    Ocupada BIT NOT NULL DEFAULT 0,
+    CONSTRAINT PK_HabitacionesDisponibles PRIMARY KEY (IdHabitacionDisponible),
+    CONSTRAINT FK_HabitacionesDisponibles_Hotel FOREIGN KEY (IdHotel) REFERENCES Hotel (IdHotel),
+    CONSTRAINT FK_HabitacionesDisponibles_TipoHabitacion FOREIGN KEY (IdTipoHabitacion) REFERENCES TipoHabitacion (IdHabitacion)
 );
 
 CREATE TABLE Cliente (
-	IdCliente INT IDENTITY(1,1) NOT NULL,
-	Nombre VARCHAR(30) NOT NULL,
-	ApPaterno VARCHAR(30) NOT NULL,
-	ApMaterno VARCHAR(30) NOT NULL,
-	RFC VARCHAR(30) NOT NULL,
-	Correo VARCHAR(30) NOT NULL,
-	Referencia VARCHAR(30) NOT NULL,
-	FechaNacimiento DATE NOT NULL,
-	EstadoCivil VARCHAR(30) NOT NULL,
-	CreadoPor INT NOT NULL,
-	FechaAlta DATETIME NOT NULL,
-	FechaModificacion DATETIME NULL,
-	UsuarioModificacion VARCHAR(30) NULL,
-	CONSTRAINT PK_Cliente PRIMARY KEY (IdCliente),
-	CONSTRAINT FK_CreadoPor FOREIGN KEY (CreadoPor) REFERENCES Empleado (IdEmpleado)
+    IdCliente INT IDENTITY(1,1) NOT NULL,
+    Nombre VARCHAR(30) NOT NULL,
+    ApPaterno VARCHAR(30) NOT NULL,
+    ApMaterno VARCHAR(30) NOT NULL,
+    RFC VARCHAR(30) NOT NULL,
+    Correo VARCHAR(30) NOT NULL,
+    Referencia VARCHAR(30) NOT NULL,
+    FechaNacimiento DATE NOT NULL,
+    EstadoCivil VARCHAR(30) NOT NULL,
+    CreadoPor INT NOT NULL,
+    FechaAlta DATETIME NOT NULL,
+    FechaModificacion DATETIME NULL,
+    UsuarioModificacion VARCHAR(30) NULL,
+    CONSTRAINT PK_Cliente PRIMARY KEY (IdCliente),
+    CONSTRAINT FK_CreadoPor FOREIGN KEY (CreadoPor) REFERENCES Empleado (IdEmpleado)
+);
+
+CREATE TABLE ServicioContratado (
+    IdServicioContratado INT IDENTITY(1,1) NOT NULL,
+    IdReservacion UNIQUEIDENTIFIER NOT NULL,
+    IdServicio INT NOT NULL,
+    FechaContratacion DATETIME NOT NULL,
+    CONSTRAINT PK_ServicioContratado PRIMARY KEY (IdServicioContratado),
+    CONSTRAINT FK_ServicioContratado_ServicioExtra FOREIGN KEY (IdServicio) REFERENCES ServicioExtra (IdServicio)
 );
 
 CREATE TABLE Reservacion (
@@ -148,7 +156,8 @@ CREATE TABLE Reservacion (
     FecReservacion DATETIME NOT NULL DEFAULT GETDATE(),
     FechaInicio DATE NOT NULL,
     FechaFin DATE NOT NULL,
-	IdCliente INT NOT NULL,
+    CorreoCliente VARCHAR(100) NOT NULL,
+    IdCliente INT NOT NULL,
     CantidadHabitaciones INT NOT NULL,
     IdHotel INT NOT NULL,
     IdHabitacion INT NOT NULL,
@@ -156,29 +165,26 @@ CREATE TABLE Reservacion (
     CantPersonas INT NOT NULL,
     CostoNoche MONEY NOT NULL,
     Anticipo MONEY NOT NULL,
-	MetodoPago VARCHAR(100) NOT NULL,
-	Llegada BIT NOT NULL DEFAULT 0, -- Columna para indicar la llegada del cliente al hotel
-    IdServicioContratado INT NULL,
-    CONSTRAINT PK_Reservacion PRIMARY KEY(CodigoReservacion),
-    CONSTRAINT FK_Reservacion_Cliente FOREIGN KEY (Correo) REFERENCES Cliente (Correo),
+    MetodoPago VARCHAR(100) NOT NULL,
+    Llegada BIT NOT NULL DEFAULT 0,
+    CONSTRAINT PK_Reservacion PRIMARY KEY (CodigoReservacion),
+    CONSTRAINT FK_Reservacion_Cliente FOREIGN KEY (IdCliente) REFERENCES Cliente (IdCliente),
     CONSTRAINT FK_Reservacion_Empleado FOREIGN KEY (IdEmpleado) REFERENCES Empleado (IdEmpleado),
     CONSTRAINT FK_Reservacion_Hotel FOREIGN KEY (IdHotel) REFERENCES Hotel (IdHotel),
-    CONSTRAINT FK_Reservacion_TipoHabitacion FOREIGN KEY (IdHabitacion) REFERENCES TipoHabitacion (IdHabitacion),
-    CONSTRAINT FK_Reservacion_ServicioContratado FOREIGN KEY (IdServicioContratado) REFERENCES ServicioContratado (IdServicioContratado)
+    CONSTRAINT FK_Reservacion_TipoHabitacion FOREIGN KEY (IdHabitacion) REFERENCES TipoHabitacion (IdHabitacion)
 );
 
 CREATE TABLE HistorialServiciosExtras (
     IdHistorialServicio INT IDENTITY(1,1) NOT NULL,
-    IdReservacion INT NOT NULL,
+    IdReservacion UNIQUEIDENTIFIER NOT NULL,
     IdServicio INT NOT NULL,
     FechaServicio DATETIME NOT NULL,
     NombreServicio VARCHAR(50) NOT NULL,
     CostoServicio MONEY NOT NULL,
     CONSTRAINT PK_HistorialServiciosExtras PRIMARY KEY (IdHistorialServicio),
-    CONSTRAINT FK_HistorialServiciosExtras_Reservacion FOREIGN KEY (IdReservacion) REFERENCES Reservacion (IdReservacion),
+    CONSTRAINT FK_HistorialServiciosExtras_Reservacion FOREIGN KEY (IdReservacion) REFERENCES Reservacion (CodigoReservacion),
     CONSTRAINT FK_HistorialServiciosExtras_ServicioExtra FOREIGN KEY (IdServicio) REFERENCES ServicioExtra (IdServicio)
 );
-
 
 CREATE TABLE Cancelaciones (
     IdCancelacion INT IDENTITY(1,1) NOT NULL,
